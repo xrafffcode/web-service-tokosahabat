@@ -10,9 +10,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $gambar_item = $_POST['gambar_item'];
     $nama_item = $_POST['nama_item'];
     $harga_pokok = $_POST['harga_pokok'];
+    $chekout = "false";
+    $approved = "false";
 
-
-    $perintah = "INSERT INTO tbl_keranjang (id_user, id_item, gambar_item, nama_item, harga_pokok) VALUES ('$id_user', '$id_item', '$gambar_item', '$nama_item', '$harga_pokok')";
+    $perintah = "INSERT INTO tbl_keranjang (id_user, id_item, gambar_item, nama_item, harga_pokok, chekout, approved) VALUES ('$id_user', '$id_item', '$gambar_item', '$nama_item', '$harga_pokok', '$chekout', '$approved')";
     $eksekusi = mysqli_query($konek, $perintah);
 
     $cek = mysqli_affected_rows($konek);

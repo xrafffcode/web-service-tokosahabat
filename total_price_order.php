@@ -9,7 +9,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     $id_user = $_POST['id_user'];
   
-    $perintah = "SELECT SUM(harga_pokok) AS total_harga FROM tbl_keranjang WHERE id_user = '$id_user' and chekout = 'false'";
+    $perintah = "SELECT SUM(harga_pokok) AS total_harga FROM tbl_keranjang WHERE id_user = '$id_user' and chekout = 'true' and approved = 'false'";
     $eksekusi = mysqli_query($konek, $perintah);
 
     $cek = mysqli_affected_rows($konek);

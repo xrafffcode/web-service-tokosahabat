@@ -6,10 +6,12 @@ $response = array();
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     $id_transaksi = $_POST['id_transaksi'];
-    
+    $id_user = $_POST['id_user'];
   
     $perintah = "UPDATE tbl_order SET delivered='Delivered' WHERE id_transaksi='$id_transaksi'";
+    $perintah2 = "UPDATE tbl_keranjang SET approved='true' WHERE id_user='$id_user' and chekout='true'";
     $eksekusi = mysqli_query($konek, $perintah);
+    $eksekusi2 = mysqli_query($konek, $perintah2);
 
     $cek = mysqli_affected_rows($konek);
 

@@ -7,7 +7,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     $id_user = $_POST['id_user'];
   
-    $perintah = "DELETE FROM tbl_keranjang WHERE id_user = '$id_user'";
+    $perintah = "UPDATE tbl_keranjang SET chekout='true' WHERE id_user='$id_user'";
     $eksekusi = mysqli_query($konek, $perintah);
 
     $cek = mysqli_affected_rows($konek);

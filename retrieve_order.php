@@ -1,7 +1,7 @@
 <?php
 require("koneksiproduk.php");
 
-$perintah = "SELECT * FROM tbl_order";
+$perintah = "SELECT * FROM tbl_order ORDER BY id_transaksi DESC";
 $eksekusi = mysqli_query($konek, $perintah);
 $cek = mysqli_affected_rows($konek);
 
@@ -11,6 +11,7 @@ if($cek > 0){
     $response["data"] = array();
 
     while($ambil = mysqli_fetch_object($eksekusi)){
+        $F["id_user"] = $ambil->id_user;
         $F["id_transaksi"] = $ambil->id_transaksi;
         $F["nama_user"] = $ambil->nama_user;
         $F['waktu_order'] = $ambil->waktu_order;
