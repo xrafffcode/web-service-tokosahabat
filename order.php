@@ -3,7 +3,7 @@ require("koneksiproduk.php");
 
 $response = array();
 
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $id_user = $_POST['id_user'];
     $nama_user = $_POST['nama_user'];
@@ -16,23 +16,21 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     $cek = mysqli_affected_rows($konek);
 
-    if($cek > 0){
+    if ($cek > 0) {
         $response["kode"] = 1;
         $response["pesan"] = "Berhasil Order";
         $response['data'] = [
 
             'id_user' => $id_user,
-              'nama_user' => $nama_user,
-                'waktu_order' => $waktu_order,
-                    'delivered' => $delivered
+            'nama_user' => $nama_user,
+            'waktu_order' => $waktu_order,
+            'delivered' => $delivered
         ];
-    }
-    else{
+    } else {
         $response["kode"] = 0;
         $response["pesan"] = "Gagal Order";
     }
-  
-}else{
+} else {
     $response["kode"] = "0";
     $response["pesan"] = "Tidak ada post data";
 }
