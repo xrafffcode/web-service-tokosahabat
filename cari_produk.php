@@ -1,26 +1,24 @@
-
-
 <?php
 require("koneksiproduk.php");
 
 $response = array();
 
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $nama_item = $_POST['nama_item'];
-  
-    $perintah = "SELECT * FROM tbl_produk WHERE nama_item LIKE '%$nama_item%'";
+
+    $perintah = "SELECT * FROM tbl_produk WHERE nama_item LIKE '%$nama_item%' OR jenis_item LIKE '%$nama_item%'";
     $eksekusi = mysqli_query($konek, $perintah);
 
     $cek = mysqli_affected_rows($konek);
 
-    if($cek > 0){
+    if ($cek > 0) {
         $response["kode"] = 1;
         $response["pesan"] = "Data Tersedia";
 
         $response["data"] = array();
 
-        while($ambil = mysqli_fetch_object($eksekusi)){
+        while ($ambil = mysqli_fetch_object($eksekusi)) {
             $F["id_item"] = $ambil->id_item;
             $F["kode_item"] = $ambil->kode_item;
             $F["barcode"] = $ambil->barcode;
@@ -33,17 +31,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $F["satuan"] = $ambil->satuan;
             $F["harga_pokok"] = $ambil->harga_pokok;
             $F["harga_level"] = $ambil->harga_level;
-                
+
 
             array_push($response["data"], $F);
         }
-    }
-    else{
+    } else {
         $response["kode"] = 0;
         $response["pesan"] = "Tidak Ada Produk";
     }
-  
-}else{
+} else {
     $response["kode"] = "404";
     $response["pesan"] = "Tidak ada post data";
 }

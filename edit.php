@@ -3,22 +3,22 @@ require("koneksiproduk.php");
 
 $response = array();
 
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $id_item = $_POST['id_item'];
-  
+
     $perintah = "SELECT * FROM tbl_produk WHERE id_item = '$id_item'";
     $eksekusi = mysqli_query($konek, $perintah);
 
     $cek = mysqli_affected_rows($konek);
 
-    if($cek > 0){
+    if ($cek > 0) {
         $response["kode"] = 1;
         $response["pesan"] = "Data Tersedia";
 
         $response["data"] = array();
 
-        while($ambil = mysqli_fetch_object($eksekusi)){
+        while ($ambil = mysqli_fetch_object($eksekusi)) {
             $F["id_item"] = $ambil->id_item;
             $F["kode_item"] = $ambil->kode_item;
             $F["barcode"] = $ambil->barcode;
@@ -34,13 +34,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
             array_push($response["data"], $F);
         }
-    }
-    else{
+    } else {
         $response["kode"] = 0;
         $response["pesan"] = "Data Tidak Tersedia";
     }
-  
-}else{
+} else {
     $response["kode"] = "0";
     $response["pesan"] = "Tidak ada post data";
 }

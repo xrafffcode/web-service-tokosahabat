@@ -3,7 +3,7 @@ require("koneksiproduk.php");
 
 $response = array();
 
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $gambar_item = $_POST['gambar_item'];
     $kode_item = $_POST['kode_item'];
@@ -22,16 +22,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     $cek = mysqli_affected_rows($konek);
 
-    if($cek > 0){
+    if ($cek > 0) {
         $response["kode"] = 1;
         $response["pesan"] = "Data Berhasil Ditambahkan";
-    }
-    else{
+    } else {
         $response["kode"] = 0;
         $response["pesan"] = "Data Gagal Ditambahkan";
     }
-  
-}else{
+} else {
     $response["kode"] = "0";
     $response["pesan"] = "Tidak ada post data";
 }
